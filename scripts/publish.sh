@@ -7,12 +7,13 @@
 set -euo pipefail
 
 PROJECT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
-APP=Compositor
+PROJECT=Compositor
+APP=Kaseno
 REPO=codewithevilxd/Kaseno
 WORK="$HOME/Library/Caches/KasenoRelease"
 SIGN_UPDATE="$WORK/DerivedData/SourcePackages/artifacts/sparkle/Sparkle/bin/sign_update"
 
-settings=$(xcodebuild -project "$PROJECT_DIR/$APP.xcodeproj" -scheme "$APP" -configuration Release -showBuildSettings 2>/dev/null)
+settings=$(xcodebuild -project "$PROJECT_DIR/$PROJECT.xcodeproj" -scheme "$PROJECT" -configuration Release -showBuildSettings 2>/dev/null)
 VERSION=$(print -r -- "$settings" | awk -F' = ' '/ MARKETING_VERSION = /{print $2; exit}')
 BUILD=$(print -r -- "$settings" | awk -F' = ' '/ CURRENT_PROJECT_VERSION = /{print $2; exit}')
 MINIMUM=$(print -r -- "$settings" | awk -F' = ' '/ MACOSX_DEPLOYMENT_TARGET = /{print $2; exit}')

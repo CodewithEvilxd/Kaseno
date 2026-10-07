@@ -111,7 +111,7 @@ struct TypeToolTests {
         draft.style.tracking = 3
         #expect(session.applyText(draft))
         let snapshot = try #require(session.projectSnapshot())
-        let url = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString + ".compositor")
+        let url = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString + ".kaseno")
         defer { try? FileManager.default.removeItem(at: url) }
         try await ProjectStore.shared.save(snapshot, to: url)
         let loaded = try await ProjectStore.shared.load(from: url)

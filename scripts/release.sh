@@ -11,7 +11,8 @@
 set -euo pipefail
 
 PROJECT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
-APP=Compositor
+PROJECT=Compositor
+APP=Kaseno
 TEAM="${DEVELOPMENT_TEAM:-}"
 IDENTITY="Developer ID Application"
 NOTARY_PROFILE=kaseno-notary
@@ -19,7 +20,7 @@ NOTARY_PROFILE=kaseno-notary
 WORK="$HOME/Library/Caches/KasenoRelease"
 DIST="$PROJECT_DIR/dist"
 
-settings=$(xcodebuild -project "$PROJECT_DIR/$APP.xcodeproj" -scheme "$APP" -configuration Release -showBuildSettings 2>/dev/null)
+settings=$(xcodebuild -project "$PROJECT_DIR/$PROJECT.xcodeproj" -scheme "$PROJECT" -configuration Release -showBuildSettings 2>/dev/null)
 VERSION=$(print -r -- "$settings" | awk -F' = ' '/ MARKETING_VERSION = /{print $2; exit}')
 BUILD=$(print -r -- "$settings" | awk -F' = ' '/ CURRENT_PROJECT_VERSION = /{print $2; exit}')
 echo "==> $APP $VERSION ($BUILD)"
@@ -29,7 +30,7 @@ mkdir -p "$WORK" "$DIST"
 
 echo "==> Archiving a Release build"
 xcodebuild archive -quiet \
-  -project "$PROJECT_DIR/$APP.xcodeproj" -scheme "$APP" -configuration Release \
+  -project "$PROJECT_DIR/$PROJECT.xcodeproj" -scheme "$PROJECT" -configuration Release \
   -destination "generic/platform=macOS" \
   -archivePath "$WORK/$APP.xcarchive" -derivedDataPath "$WORK/DerivedData" \
   CODE_SIGN_STYLE=Manual CODE_SIGN_IDENTITY="$IDENTITY" DEVELOPMENT_TEAM="$TEAM"

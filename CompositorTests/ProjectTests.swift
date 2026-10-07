@@ -6,7 +6,7 @@ import Testing
 @MainActor
 struct ProjectTests {
     private func temporaryFolder() throws -> URL {
-        let url = FileManager.default.temporaryDirectory.appendingPathComponent("CompositorProjectTests-\(UUID())")
+        let url = FileManager.default.temporaryDirectory.appendingPathComponent("KasenoProjectTests-\(UUID())")
         try FileManager.default.createDirectory(at: url, withIntermediateDirectories: false)
         return url
     }
