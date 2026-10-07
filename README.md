@@ -72,12 +72,12 @@ git clone https://github.com/codewithevilxd/Kaseno.git
    ```sh
    git clone https://github.com/codewithevilxd/Kaseno.git
    ```
-2. Open `Compositor.xcodeproj` in Xcode.
-3. Select the **Compositor** scheme and press **⌘R** to build and run.
+2. Open `Kaseno.xcodeproj` in Xcode.
+3. Select the **Kaseno** scheme and press **⌘R** to build and run.
 
 To run the automated test suite:
 ```sh
-xcodebuild -project Compositor.xcodeproj -scheme Compositor -destination 'platform=macOS' test
+xcodebuild -project Kaseno.xcodeproj -scheme Kaseno -destination 'platform=macOS' test
 ```
 
 ---

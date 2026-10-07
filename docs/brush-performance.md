@@ -29,11 +29,11 @@ Run performance tests alone, so other main-actor tests do not contend with the b
 
 ```sh
 TEST_RUNNER_BRUSH_BENCHMARK=1 xcodebuild \
-  -project Compositor.xcodeproj -scheme Compositor -configuration Debug \
+  -project Kaseno.xcodeproj -scheme Kaseno -configuration Debug \
   -derivedDataPath /tmp/KasenoBrush -destination 'platform=macOS' \
   CODE_SIGNING_ALLOWED=NO ENABLE_DEBUG_DYLIB=NO \
   -parallel-testing-enabled NO \
-  -only-testing:CompositorTests/BrushPerformanceTests test
+  -only-testing:KasenoTests/BrushPerformanceTests test
 ```
 
 The benchmark logs `BRUSH BENCH` lines and exports `/tmp/kaseno-brush-benchmark.png` for visual inspection. It exercises both blank and opaque layers. The exported example contains both benchmark passes.

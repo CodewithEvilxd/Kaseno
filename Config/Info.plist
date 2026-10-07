@@ -36,7 +36,7 @@
 			<string>Owner</string>
 			<key>LSItemContentTypes</key>
 			<array>
-				<string>com.compositor.project</string>
+				<string>com.kaseno.project</string>
 			</array>
 			<key>LSTypeIsPackage</key>
 			<true/>
@@ -47,7 +47,7 @@
 	<key>SUFeedURL</key>
 	<string>https://raw.githubusercontent.com/codewithevilxd/Kaseno/main/appcast.xml</string>
 	<key>SUPublicEDKey</key>
-	<string>KZvD724t8QpzTR4OGrHrsCWt538TJ/g/qrTZii+o214=</string>
+	<string>3fbEiF2krGlh52cVQqYNmvIC7gjjrRCjL6cXo/2VW6M=</string>
 	<key>SUEnableAutomaticChecks</key>
 	<true/>
 	<key>UTExportedTypeDeclarations</key>
@@ -60,7 +60,7 @@
 			<key>UTTypeDescription</key>
 			<string>Kaseno Layer</string>
 			<key>UTTypeIdentifier</key>
-			<string>com.compositor.layer-row</string>
+			<string>com.kaseno.layer-row</string>
 		</dict>
 		<dict>
 			<key>UTTypeConformsTo</key>
@@ -70,11 +70,12 @@
 			<key>UTTypeDescription</key>
 			<string>Kaseno Project</string>
 			<key>UTTypeIdentifier</key>
-			<string>com.compositor.project</string>
+			<string>com.kaseno.project</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
 				<key>public.filename-extension</key>
 				<array>
+					<string>kaseno</string>
 					<string>comp</string>
 				</array>
 			</dict>

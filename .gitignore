@@ -17,6 +17,7 @@ xcuserdata/
 *.p8
 *.cer
 *.certSigningRequest
+*.key
 .env
 
 # Claude Code settings personal to this machine

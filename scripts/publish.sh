@@ -7,7 +7,7 @@
 set -euo pipefail
 
 PROJECT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
-PROJECT=Compositor
+PROJECT=Kaseno
 APP=Kaseno
 REPO=codewithevilxd/Kaseno
 WORK="$HOME/Library/Caches/KasenoRelease"

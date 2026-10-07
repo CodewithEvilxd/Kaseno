@@ -28,16 +28,16 @@ jobs:
       - name: Resolve Swift packages
         run: >
           xcodebuild -resolvePackageDependencies
-          -project Compositor.xcodeproj
-          -scheme Compositor
+          -project Kaseno.xcodeproj
+          -scheme Kaseno
           -onlyUsePackageVersionsFromResolvedFile
 
       - name: Build for testing
         id: build
         run: >
           xcodebuild build-for-testing
-          -project Compositor.xcodeproj
-          -scheme Compositor
+          -project Kaseno.xcodeproj
+          -scheme Kaseno
           -destination 'platform=macOS,arch=arm64'
           -configuration Debug
           -derivedDataPath DerivedData
@@ -47,27 +47,27 @@ jobs:
       - name: Run unit tests in parallel
         run: >
           xcodebuild test-without-building
-          -project Compositor.xcodeproj
-          -scheme Compositor
+          -project Kaseno.xcodeproj
+          -scheme Kaseno
           -destination 'platform=macOS,arch=arm64'
           -derivedDataPath DerivedData
           -resultBundlePath ParallelResults.xcresult
           -parallel-testing-enabled YES
-          -skip-testing:CompositorTests/FloatingPanelTests
-          -skip-testing:CompositorTests/SliderSnapTests
+          -skip-testing:KasenoTests/FloatingPanelTests
+          -skip-testing:KasenoTests/SliderSnapTests
 
       - name: Run window tests serially
         if: ${{ !cancelled() && steps.build.outcome == 'success' }}
         run: >
           xcodebuild test-without-building
-          -project Compositor.xcodeproj
-          -scheme Compositor
+          -project Kaseno.xcodeproj
+          -scheme Kaseno
           -destination 'platform=macOS,arch=arm64'
           -derivedDataPath DerivedData
           -resultBundlePath SerialResults.xcresult
           -parallel-testing-enabled NO
-          -only-testing:CompositorTests/FloatingPanelTests
-          -only-testing:CompositorTests/SliderSnapTests
+          -only-testing:KasenoTests/FloatingPanelTests
+          -only-testing:KasenoTests/SliderSnapTests
 
       - name: Upload test results
         if: failure()

@@ -11,7 +11,7 @@
 set -euo pipefail
 
 PROJECT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
-PROJECT=Compositor
+PROJECT=Kaseno
 APP=Kaseno
 TEAM="${DEVELOPMENT_TEAM:-}"
 IDENTITY="Developer ID Application"
