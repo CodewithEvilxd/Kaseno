@@ -3,7 +3,7 @@ import CoreGraphics
 @testable import Compositor
 
 @MainActor
-struct CompositorTests {
+struct KasenoTests {
     let document = CGSize(width: 1920, height: 1080)
 
     @Test func dimensionValidation() {

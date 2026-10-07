@@ -1,4 +1,4 @@
-# Compositor project format, versions 1–11
+# Kaseno project format, versions 1–11
 
 A `.comp` file is a macOS document package containing `manifest.json` and an `images/` directory of `<layer UUID>.png` assets.
 

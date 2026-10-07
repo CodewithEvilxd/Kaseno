@@ -1,6 +1,6 @@
 import XCTest
 
-final class CompositorUITests: XCTestCase {
+final class KasenoUITests: XCTestCase {
     override func setUpWithError() throws { continueAfterFailure = false }
 
     @MainActor

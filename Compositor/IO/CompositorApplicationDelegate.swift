@@ -1,7 +1,7 @@
 import AppKit
 import Sparkle
 
-final class CompositorApplicationDelegate: NSObject, NSApplicationDelegate {
+final class KasenoApplicationDelegate: NSObject, NSApplicationDelegate {
     let workspace = ProjectWorkspace()
     var session: EditorSession { workspace.current.session }
     var projects: ProjectController { workspace.current.controller }

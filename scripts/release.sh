@@ -12,7 +12,7 @@ set -euo pipefail
 
 PROJECT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 APP=Compositor
-TEAM="${DEVELOPMENT_TEAM:-3E4X3B9Z9T}"
+TEAM="${DEVELOPMENT_TEAM:-}"
 IDENTITY="Developer ID Application"
 NOTARY_PROFILE=kaseno-notary
 # Built outside Dropbox: the extended attributes it adds to files make code signing fail.

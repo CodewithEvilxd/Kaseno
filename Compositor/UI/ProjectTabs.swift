@@ -4,7 +4,7 @@ import AppKit
 import Combine
 
 struct ProjectWorkspaceView: View {
-    let applicationDelegate: CompositorApplicationDelegate
+    let applicationDelegate: KasenoApplicationDelegate
     private var workspace: ProjectWorkspace { applicationDelegate.workspace }
     var body: some View {
         ContentView(session: workspace.current.session, applicationDelegate: applicationDelegate)

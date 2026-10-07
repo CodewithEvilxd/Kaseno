@@ -30,7 +30,7 @@ struct TypeToolTests {
         session.textDraft?.style.content = "Text"
         #expect(session.document?.layers.count == 1)
         var draft = try #require(session.textDraft)
-        draft.style.content = "Hello\nCompositor"
+        draft.style.content = "Hello\nKaseno"
         draft.style.fontSize = 48
         #expect(session.applyText(draft))
         #expect(session.activeLayer?.liveText?.style == draft.style)
@@ -44,7 +44,7 @@ struct TypeToolTests {
         draft.style.content = "Changed"
         #expect(session.applyText(draft))
         session.undo()
-        #expect(session.activeLayer?.liveText?.style.content == "Hello\nCompositor")
+        #expect(session.activeLayer?.liveText?.style.content == "Hello\nKaseno")
         session.undo()
         #expect(session.document?.layers.count == 1)
         session.redo()
@@ -230,7 +230,7 @@ struct TypeToolTests {
     }
 
     @Test func commandQShouldTerminateWhileEditingText() async throws {
-        let delegate = CompositorApplicationDelegate()
+        let delegate = KasenoApplicationDelegate()
         let session = delegate.session
         session.createDocument(width: 800, height: 600, emptyLayer: true)
         session.selectTool(.type)

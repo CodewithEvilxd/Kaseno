@@ -2593,8 +2593,8 @@ extension CanvasView {
         return true
     }
 
-    /// Set `CompositorCPUCanvas` to draw every frame with Core Graphics, to compare the two.
-    static let gpuDisabled = UserDefaults.standard.bool(forKey: "CompositorCPUCanvas")
+    /// Set `KasenoCPUCanvas` to draw every frame with Core Graphics, to compare the two.
+    static let gpuDisabled = UserDefaults.standard.bool(forKey: "KasenoCPUCanvas")
 
     private func makeGPUView() -> MetalCanvasView {
         let view = MetalCanvasView(frame: bounds)

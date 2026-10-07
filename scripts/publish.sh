@@ -1,5 +1,5 @@
 #!/bin/zsh
-# Publishes the DMG that release.sh built: a GitHub Release (v<version>) holding Compositor.dmg, then the Sparkle
+# Publishes the DMG that release.sh built: a GitHub Release (v<version>) holding Kaseno.dmg, then the Sparkle
 # update feed (appcast.xml, committed to main) pointing at it.
 #
 # Run release.sh first. Needs the Sparkle signing key in the login keychain and `gh` signed in.
@@ -26,7 +26,7 @@ if gh release view "$TAG" --repo "$REPO" >/dev/null 2>&1; then
 fi
 
 echo "==> $APP $VERSION ($BUILD)"
-# Every release names its file Compositor.dmg, so …/releases/latest/download/Compositor.dmg always works.
+# Every release names its file Kaseno.dmg, so …/releases/latest/download/Kaseno.dmg always works.
 mkdir -p "$WORK/publish"
 DMG="$WORK/publish/$APP.dmg"
 cp "$SOURCE" "$DMG"

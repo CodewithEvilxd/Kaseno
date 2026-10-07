@@ -5,7 +5,7 @@ struct ContentView: View {
     /// The Layers panel's width, remembered across launches.
     @AppStorage("layersPanelWidth") private var layersPanelWidth = 252.0
     @Bindable var session: EditorSession
-    var applicationDelegate: CompositorApplicationDelegate? = nil
+    var applicationDelegate: KasenoApplicationDelegate? = nil
     @Environment(\.openWindow) private var openWindow
     @State private var canvasFrame: CGRect = .zero
     @State private var levelsPanel = FloatingPanelController(name: "levelsPanel")

@@ -2,8 +2,8 @@ import SwiftUI
 import Sparkle
 
 @main
-struct CompositorApp: App {
-    @NSApplicationDelegateAdaptor(CompositorApplicationDelegate.self) private var applicationDelegate
+struct KasenoApp: App {
+    @NSApplicationDelegateAdaptor(KasenoApplicationDelegate.self) private var applicationDelegate
     private var session: EditorSession { applicationDelegate.session }
     var body: some Scene {
         Window("Kaseno", id: "editor") {
