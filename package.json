@@ -1,0 +1,22 @@
+{
+  "name": "kaseno-suite",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Kaseno Creative Compositor — Native macOS & Windows Studio",
+  "scripts": {
+    "dev": "npm --prefix windows run dev",
+    "build": "npm --prefix windows run build",
+    "start": "npm --prefix windows run start",
+    "electron:dev": "npm --prefix windows run electron:dev",
+    "lint": "npm --prefix windows run lint"
+  },
+  "keywords": [
+    "compositor",
+    "photo-editor",
+    "image-processing",
+    "layer-compositing",
+    "cross-platform"
+  ],
+  "author": "Kaseno Team",
+  "license": "MIT"
+}
