@@ -1,0 +1,40 @@
+# Node / Windows build outputs
+node_modules/
+windows/node_modules/
+dist/
+windows/dist/
+dist-ssr/
+*.log
+npm-debug.log*
+
+# macOS build output
+build/
+DerivedData/
+macos/DerivedData/
+*.xcarchive
+*.dmg
+
+# Xcode & OS per-user state
+xcuserdata/
+*.xcuserstate
+.DS_Store
+
+# Editor directories and files
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Signing material and secrets — never commit
+*.p12
+*.p8
+*.cer
+*.certSigningRequest
+*.key
+.env
+
+# Personal / machine settings
+.claude/settings.local.json
+BUILD_PLAN.md

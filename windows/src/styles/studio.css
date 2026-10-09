@@ -1,0 +1,654 @@
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800;12..96,900&family=JetBrains+Mono:wght@400;500;600;700&family=Patrick+Hand&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+:root {
+  /* Kaseno & GitKura Typography Stack */
+  --font-display: 'Bricolage Grotesque', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-hand: 'Patrick Hand', 'Kalam', cursive, sans-serif;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Consolas, monospace;
+
+  /* Kaseno macOS exact color palette */
+  --bg-app: #242424; /* Color(white: 0.14) */
+  --bg-sidebar: #1e1e1e;
+  --bg-panel: #202020;
+  --bg-header: #262626;
+  --bg-control: #2c2c2c;
+  --bg-control-active: rgba(255, 255, 255, 0.14);
+  --bg-control-hover: rgba(255, 255, 255, 0.08);
+  --border-subtle: rgba(255, 255, 255, 0.1);
+  --border-prominent: rgba(255, 255, 255, 0.18);
+  --text-main: #f5f5f5;
+  --text-muted: #a0a0a0;
+  --text-dim: #757575;
+  --accent: #007aff; /* Apple / Kaseno primary blue */
+  --accent-hover: #0a84ff;
+  --accent-active: #0062cc;
+  --danger: #ff453a;
+  --warning: #ff9f0a;
+  --success: #32d74b;
+  --ruler-thickness: 18px;
+
+  /* GitKura Signature Accent Colors */
+  --kura-yellow: #FEF08A;
+  --kura-yellow-dark: #713F12;
+  --kura-blue: #BAE6FD;
+  --kura-blue-dark: #0369A1;
+  --kura-green: #BBF7D0;
+  --kura-green-dark: #15803D;
+  --kura-navy: #1E293B;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+body, html, #root {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: var(--bg-app);
+  color: var(--text-main);
+  font-family: var(--font-sans);
+  font-size: 12px;
+  line-height: 1.4;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Ensure all buttons, inputs, selects inherit our font stack */
+button, input, select, textarea {
+  font-family: var(--font-sans);
+  color: inherit;
+}
+
+/* Remove number input spinner arrows to prevent number truncation */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+/* Custom Range Sliders */
+input[type=range] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: rgba(255, 255, 255, 0.12);
+  height: 4px;
+  border-radius: 2px;
+  outline: none;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #ffffff;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  transition: transform 0.1s ease;
+}
+input[type=range]::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.28);
+}
+
+/* Studio Layout */
+.studio-root {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--bg-app);
+}
+
+.studio-main {
+  display: flex;
+  flex: 1;
+  height: calc(100vh - 42px - 38px - 30px);
+  overflow: hidden;
+  position: relative;
+}
+
+/* Top Toolbar & Tab Strip (editorChrome) */
+.studio-titlebar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 38px;
+  background: var(--bg-app);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 0 12px;
+  z-index: 50;
+}
+
+/* Contextual Tool Header Bar (toolHeaders) */
+.studio-toolheader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 42px;
+  background: var(--bg-header);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 0 16px;
+  font-size: 12px;
+  color: var(--text-muted);
+  z-index: 40;
+}
+
+/* Tool Rail (Left vertical bar, 56px wide) */
+.studio-toolbar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 56px;
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border-subtle);
+  padding: 10px 0;
+  gap: 6px;
+  z-index: 30;
+  overflow-y: auto;
+}
+
+.tool-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 7px;
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--text-main);
+  cursor: pointer;
+  transition: all 0.12s ease;
+  position: relative;
+}
+
+.tool-button:hover {
+  background: var(--bg-control-hover);
+}
+
+.tool-button.active {
+  background: var(--kura-yellow) !important;
+  color: #1e293b !important;
+  border: 1.5px solid #ca8a04 !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  font-weight: 700;
+}
+
+/* Center Canvas Viewport with GitKura dot-grid notebook texture */
+.studio-viewport {
+  flex: 1;
+  position: relative;
+  background-color: #17181c;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.09) 1.2px, transparent 1.2px);
+  background-size: 20px 20px;
+  overflow: hidden;
+  cursor: default;
+}
+
+.canvas-checkerboard {
+  background-color: #1e1e1e;
+  background-image:
+    linear-gradient(45deg, #2a2a2a 25%, transparent 25%),
+    linear-gradient(-45deg, #2a2a2a 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #2a2a2a 75%),
+    linear-gradient(-45deg, transparent 75%, #2a2a2a 75%);
+  background-size: 16px 16px;
+  background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+/* Rulers */
+.ruler-corner {
+  width: var(--ruler-thickness);
+  height: var(--ruler-thickness);
+  background: #333333;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 25;
+}
+
+.ruler-horizontal {
+  position: absolute;
+  top: 0;
+  left: var(--ruler-thickness);
+  right: 0;
+  height: var(--ruler-thickness);
+  background: #333333;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 20;
+  overflow: hidden;
+}
+
+.ruler-vertical {
+  position: absolute;
+  top: var(--ruler-thickness);
+  left: 0;
+  bottom: 0;
+  width: var(--ruler-thickness);
+  background: #333333;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 20;
+  overflow: hidden;
+}
+
+/* Right Panels */
+.studio-right-sidebar {
+  display: flex;
+  flex-direction: column;
+  width: 252px;
+  min-width: 202px;
+  max-width: 380px;
+  background: var(--bg-sidebar);
+  border-left: 1px solid var(--border-subtle);
+  z-index: 30;
+  overflow: hidden;
+  position: relative;
+}
+
+.sidebar-resize-handle {
+  position: absolute;
+  left: -4px;
+  top: 0;
+  bottom: 0;
+  width: 8px;
+  cursor: col-resize;
+  z-index: 40;
+}
+
+.panel-section {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-sidebar);
+}
+
+/* Layer Row (52px height) */
+.layer-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 52px;
+  padding: 0 10px;
+  background: transparent;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  cursor: pointer;
+  transition: background 0.1s ease;
+}
+
+.layer-row:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.layer-row.active {
+  background: rgba(255, 255, 255, 0.12);
+  border-left: 3px solid var(--accent);
+}
+
+.layer-thumbnail {
+  width: 36px;
+  height: 36px;
+  border-radius: 4px;
+  background: #181818;
+  border: 1px solid var(--border-subtle);
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+/* Bottom Status Bar (30px height) */
+.studio-statusbar {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  height: 32px;
+  background: var(--bg-app);
+  border-top: 1px solid var(--border-subtle);
+  padding: 0 14px;
+  font-size: 11px;
+  color: var(--text-muted);
+  font-family: var(--font-sans);
+  z-index: 50;
+  gap: 12px;
+}
+
+/* Segmented Control Picker */
+.segmented-control {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.35);
+  border-radius: 8px;
+  padding: 2px;
+  gap: 2px;
+  border: 1px solid var(--border-subtle);
+  height: 28px;
+}
+
+.segmented-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 24px;
+  padding: 0 10px;
+  border-radius: 6px;
+  font-family: var(--font-sans);
+  font-size: 11.5px;
+  font-weight: 600;
+  line-height: 1;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.12s ease;
+  white-space: nowrap;
+}
+
+.segmented-button:hover {
+  color: var(--text-main);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.segmented-button.active {
+  background: rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+/* Pill / Capsule Buttons */
+.capsule-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 4px 12px;
+  border-radius: 9999px; /* Capsule */
+  font-size: 11px;
+  font-weight: 500;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-main);
+  transition: all 0.12s ease;
+}
+
+.capsule-button:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.capsule-button.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+.capsule-button.primary:hover {
+  background: var(--accent-hover);
+}
+
+/* Modals & Dialogs */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.modal-content {
+  background: #242424;
+  border: 1px solid var(--border-prominent);
+  border-radius: 10px;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7);
+  width: 460px;
+  max-width: 92vw;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border-subtle);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.modal-body {
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 12px 18px;
+  background: rgba(0, 0, 0, 0.15);
+  border-top: 1px solid var(--border-subtle);
+}
+
+/* Inputs & Form Elements */
+.studio-input {
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid var(--border-subtle);
+  border-radius: 5px;
+  padding: 4px 8px;
+  color: var(--text-main);
+  font-size: 11px;
+  outline: none;
+}
+.studio-input:focus {
+  border-color: var(--accent);
+}
+
+/* Scrubbable labels */
+.scrubbable {
+  cursor: ew-resize;
+  color: var(--text-muted);
+}
+.scrubbable:hover {
+  color: var(--text-main);
+}
+
+/* ==========================================================================
+   GitKura Signature Typography, Badges & Notebook Accents
+   ========================================================================== */
+
+.font-display {
+  font-family: var(--font-display) !important;
+}
+
+.font-hand {
+  font-family: var(--font-hand) !important;
+}
+
+.font-sans {
+  font-family: var(--font-sans) !important;
+}
+
+.font-mono {
+  font-family: var(--font-mono) !important;
+}
+
+/* GitKura Yellow Text Highlighter - Clean, aligned & authentic */
+.text-highlight {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 700;
+  color: #0f172a !important; /* Crisp dark ink on yellow highlighter */
+  background: #FEF08A; /* GitKura signature canary yellow */
+  padding: 3px 9px;
+  border-radius: 4px;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  user-select: none;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+  transition: all 0.12s ease;
+}
+
+.text-highlight:hover {
+  background: #FDE047;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.35);
+}
+
+.text-inactive {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-muted);
+  letter-spacing: -0.01em;
+  padding: 3px 9px;
+  border-radius: 4px;
+  line-height: 1.25;
+  transition: all 0.12s ease;
+  user-select: none;
+}
+
+.text-inactive:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.text-inactive:hover {
+  color: #ffffff;
+}
+
+/* Dot grid background texture (GitKura notebook pattern) */
+.dot-grid-bg {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1.2px, transparent 1.2px);
+  background-size: 18px 18px;
+}
+
+/* Pill Badges (GitKura tag style) */
+.pill-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 2px 9px;
+  border-radius: 9999px;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  border: 1px solid var(--border-prominent);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text-main);
+  transition: all 0.15s ease;
+}
+
+.pill-badge-yellow {
+  background: var(--kura-yellow);
+  color: #1e293b !important;
+  border-color: #ca8a04;
+  font-weight: 700;
+}
+
+.pill-badge-blue {
+  background: var(--kura-blue);
+  color: #0369a1 !important;
+  border-color: #38bdf8;
+  font-weight: 700;
+}
+
+.pill-badge-green {
+  background: var(--kura-green);
+  color: #15803d !important;
+  border-color: #4ade80;
+  font-weight: 700;
+}
+
+.pill-badge-dark {
+  background: #1e293b;
+  color: #f8fafc;
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+/* Chapter / Section Breadcrumb Pill */
+.chapter-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  border: 1.5px solid var(--border-prominent);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  background: rgba(0, 0, 0, 0.25);
+}
+
+/* Handwritten Subtitle / Note (Patrick Hand font) */
+.handwritten-note {
+  font-family: 'Patrick Hand', 'Kalam', cursive, sans-serif !important;
+  font-size: 15px !important;
+  color: #f1f5f9;
+  letter-spacing: 0.02em;
+  line-height: 1.35;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+/* Sticky Guide Card with Washi tape touches */
+.sticky-guide-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1.5px dashed var(--border-prominent);
+  border-radius: 12px;
+  padding: 14px 16px;
+}
+
+.washi-tape-accent {
+  position: absolute;
+  top: -7px;
+  left: 20px;
+  width: 42px;
+  height: 13px;
+  background: rgba(254, 240, 138, 0.85);
+  border-radius: 2px;
+  transform: rotate(-1.5deg);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+}
+
